@@ -1,6 +1,6 @@
 Folder-gallery is an web application which provide folder explore and image gallery view
 
-# Feature
+# Features
 
  * Pretty easy to use, only one configure you just need, no complicated config stuff
  * Folder explore which is similar that you use explorer or finder in you pc 
