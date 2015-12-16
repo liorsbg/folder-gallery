@@ -27,3 +27,4 @@ Folder-gallery is an web application which provide folder explore and image gall
 ![screenshot2](https://raw.githubusercontent.com/hcnode/folder-gallery/master/screenshots/screenshot2.png)
 ![screenshot3](https://raw.githubusercontent.com/hcnode/folder-gallery/master/screenshots/screenshot3.png)
 ![screenshot4](https://raw.githubusercontent.com/hcnode/folder-gallery/master/screenshots/screenshot4.png)
+![screenshot5](https://raw.githubusercontent.com/hcnode/folder-gallery/master/screenshots/screenshot5.png)
