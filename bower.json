@@ -1,0 +1,24 @@
+{
+  "name": "folder-gallery",
+  "description": "folder explore and image gallery viewer",
+  "main": "",
+  "authors": [
+    "hcnode <7372@163.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.4.0",
+    "angular": "~1.4.0",
+    "ngGallery": "git://github.com/hcnode/ngGallery"
+  }
+}

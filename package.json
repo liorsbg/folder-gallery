@@ -1,0 +1,22 @@
+{
+  "name": "folder-gallery",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node ./bin/www",
+    "postinstall" : "bower install"
+  },
+  "description" : "folder explore and image gallery viewer",
+  "homepage": "https://github.com/hcnode/folder-gallery",
+  "dependencies": {
+    "config": "^1.17.1",
+    "debug": "~2.1.1",
+    "ejs": "^2.3.4",
+    "express": "~4.12.2",
+    "jade": "~1.9.2",
+    "lodash": "^3.10.1",
+    "lwip": "0.0.8",
+    "serve-favicon": "~2.2.0",
+    "serve-index": "hcnode/serve-index",
+    "tar-fs": "^1.8.1"
+  }
+}

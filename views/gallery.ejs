@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/ngGallery/src/css/screen.css">
+    <link rel="stylesheet" href="/bower_components/ngGallery/src/css/ngGallery.css">
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+
+    <script src="/bower_components/ngGallery/src/js/ngGallery.js"></script>
+
+</head>
+<body ng-app="app" style="padding: 20px">
+<div ng-controller="CtrlGallery as ctrl">
+    <ng-gallery images="ctrl.images" editShow="false"></ng-gallery>
+</div>
+
+<script>
+    
+    function createImages(path, files){
+        var images = [];
+        for(var i=0;i<files.length;i++) {
+            images.push({
+                thumb: path + "/" +  files[i] + "/_thumb",
+                img: path + "/"+ files[i] + "/_image",
+                description: (/\/([^\/]+)$/.test(path) && RegExp.$1)
+            });
+        }
+        return images;
+    }
+    var app = angular.module("app", ['jkuri.gallery']).controller('CtrlGallery', function($scope, $timeout) {
+        var files = <%- JSON.stringify(files) %>;
+        var path = "<%- path %>";
+        var images = createImages(path, files);
+        var that = this;
+        that.images = images.splice(0, 3);
+        window.ngGalleryImageOnload = function (image) {
+            if(images.length > 0) {
+                $timeout(function () {
+                    that.images.push(images.shift());
+                })
+            }
+        };
+    });
+</script>
+</body>
+</html>
