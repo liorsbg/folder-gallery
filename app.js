@@ -9,7 +9,7 @@ var config = require('config');
 
 var app = express();
 
-// obtain config form /config/default.json
+// obtain config from /config/default.json
 var homePath = config.get("homePath"); // home path
 var thumbSize = config.get("thumbSize");// thumb size
 
@@ -17,7 +17,7 @@ var thumbSize = config.get("thumbSize");// thumb size
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-
+// bower dependence router
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 // dir compress router

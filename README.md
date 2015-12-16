@@ -13,6 +13,7 @@ Folder-gallery is an web application which provide folder explore and image gall
  * `npm install` 
  * `npm start`
  * `vi ./config/default.json` config the "homePath"
+ * Visit http://localhost:8000/ 
  * Have Fun and Just Roll With It!
  
 # Dependencies
