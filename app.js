@@ -21,20 +21,24 @@ app.set('view engine', 'jade');
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 // dir compress router
-app.get(/(\/.+)?\/+_tar/, function (req, res, next) {
+app.get(/.*\/_tar$/, function (req, res, next) {
 	var baseUrl = req.originalUrl;
 	var dir = homePath + getPath(baseUrl, "_tar");
-	var baseUrl2 = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
 	var tarName = "tar";
-	if(baseUrl2){
-		tarName = baseUrl2.substr(baseUrl2.lastIndexOf("/") + 1, baseUrl2.length - 1);
+	if(dir){
+		tarName = (/\/?([^\/]+)\/?$/.test(dir) && RegExp.$1) || tarName;
 	}
-	res.set("Content-Disposition", 'attachment;filename="'+ tarName +'.tar"');
-	tar.pack(dir).pipe(res);
+	if(fs.existsSync(dir)) {
+		res.set("Content-Disposition", 'attachment;filename="' + encodeURIComponent(tarName) + '.tar"');
+		tar.pack(dir).pipe(res);
+	}else{
+		next();
+	}
 });
 
+
 // thumb image generater router
-app.get(/(\/.+)?\/_thumb/, function (req, res, next) {
+app.get(/.*\/_thumb$/, function (req, res, next) {
 	var baseUrl = req.originalUrl;
 	var file = getPath(baseUrl, "_thumb");
 	var fullFile = homePath + file;
@@ -66,18 +70,18 @@ app.get(/(\/.+)?\/_thumb/, function (req, res, next) {
 				}
 			})
 		}
+	}else{
+		next();
 	}
 });
 
 // gallery page router
-app.get(/(\/.+)?\/_gallery/, function (req, res, next) {
+app.get(/.*\/_gallery$/, function (req, res, next) {
 	var baseUrl = req.originalUrl;
 	var path = getPath(baseUrl, "_gallery");
 	var fullPath = homePath + path;
 	if(fs.existsSync(fullPath)){
 		var images = [];
-		console.log(baseUrl);
-		console.log(fullPath);
 		fs.readdir(fullPath, function (err, files) {
 			_.forEach(files, function (file) {
 				if(file.indexOf(".") != 0) {
@@ -97,7 +101,7 @@ app.get(/(\/.+)?\/_gallery/, function (req, res, next) {
 });
 
 // image router
-app.get(/(\/.+)?\/_image/, function (req, res, next) {
+app.get(/.*\/_image$/, function (req, res, next) {
 	var baseUrl = req.originalUrl;
 	var file = getPath(baseUrl, "_image");
 	var fullFile = homePath + file;
@@ -153,3 +157,4 @@ app.use(function (err, req, res, next) {
 
 
 module.exports = app;
+

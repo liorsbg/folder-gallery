@@ -23,7 +23,7 @@
     function createImages(path, files){
         var images = [];
         for(var i=0;i<files.length;i++) {
-            images.push({
+            images.push({ // ngGallery所需要的数据对象
                 thumb: path + "/" +  files[i] + "/_thumb",
                 img: path + "/"+ files[i] + "/_image",
                 description: (/\/([^\/]+)$/.test(path) && RegExp.$1)
@@ -32,10 +32,11 @@
         return images;
     }
     var app = angular.module("app", ['jkuri.gallery']).controller('CtrlGallery', function($scope, $timeout) {
-        var files = <%- JSON.stringify(files) %>;
+        var files = <%- JSON.stringify(files) %>; // 照片的json数组：["xxx.jpg", "yyy.jpg"]
         var path = "<%- path %>";
         var images = createImages(path, files);
         var that = this;
+        // 每次加载三张图片，按顺序加载
         that.images = images.splice(0, 3);
         window.ngGalleryImageOnload = function (image) {
             if(images.length > 0) {
