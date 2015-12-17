@@ -2,7 +2,7 @@ Folder-gallery is an web application which provide folder explore and image gall
 
 # Features
 
- * Pretty easy to use, only one configure you just need, no complicated config stuff
+ * Quite easy to use, only one configure you just need, no complicated config stuff
  * Folder explore which is similar that you use explorer or finder in you pc 
  * Image gallery with preview mode and two size the image thumbnail
  * Provide folder compress and download
@@ -11,8 +11,8 @@ Folder-gallery is an web application which provide folder explore and image gall
  
  * `git clone https://github.com/hcnode/folder-gallery`
  * `npm install` 
- * `npm start`
  * `vi ./config/default.json` config the "homePath"
+ * `npm start`
  * Visit http://localhost:8000/ 
  * Have Fun and Just Roll With It!
  
