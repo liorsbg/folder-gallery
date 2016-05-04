@@ -6,6 +6,8 @@ var tar = require('tar-fs');
 var _ = require('lodash');
 var lwip = require('lwip');
 var config = require('config');
+var session = require('express-session')
+var basic = require('express-authentication-basic');
 
 var app = express();
 
@@ -17,6 +19,25 @@ var thumbSize = config.get("thumbSize");// thumb size
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
+
+app.use(basic(function(challenge, callback) {
+	if (challenge.username === 'xxx' && challenge.password === 'xxx') {
+		callback(null, true, { user: 'admin' });
+	} else {
+		callback(null, false, { error: 'INVALID_PASSWORD' });
+	}
+}));
+app.use(function (req, res, next) {
+	if (req.authenticated || req.session.isAuth) {
+		req.session.isAuth = true;
+		next();
+	} else {
+		res.set("WWW-Authenticate", "Basic realm=\"client Login\"");
+		res.statusCode =401;
+		res.end();
+	}
+});
 // bower dependence router
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
