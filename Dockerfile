@@ -1,4 +1,4 @@
-FROM node:7.7.0
+FROM node:6.10
 
 # node-gyp (dep) needs a compiler
 RUN apt-get install g++
