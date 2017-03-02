@@ -9,6 +9,8 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
 RUN npm install && npm cache clean
+# This isn't working in package.json postinstall
+RUN ./node_modules/.bin/bower --allow-root install
 COPY . /usr/src/app
 
 EXPOSE 8000
