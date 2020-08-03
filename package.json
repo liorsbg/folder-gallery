@@ -10,7 +10,7 @@
   "dependencies": {
     "bower": "^1.8.0",
     "config": "^1.17.1",
-    "debug": "~2.1.1",
+    "debug": "~4.1.1",
     "ejs": "^2.3.4",
     "express": "~4.12.2",
     "express-authentication": "^0.3.2",
